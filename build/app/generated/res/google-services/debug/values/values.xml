@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="gcm_defaultSenderId" translatable="false">602804805426</string>
+    <string name="google_api_key" translatable="false">AIzaSyAwqZSilY9pwzvo_Tw1jboQeGNlgIq1X1s</string>
+    <string name="google_app_id" translatable="false">1:602804805426:android:00872feaca91b70c4c012b</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyAwqZSilY9pwzvo_Tw1jboQeGNlgIq1X1s</string>
+    <string name="google_storage_bucket" translatable="false">intouch-2e4e0.appspot.com</string>
+    <string name="project_id" translatable="false">intouch-2e4e0</string>
+</resources>
