@@ -68,11 +68,35 @@ abstract class Localization {
   String get search;
 
   // Auth Stringd
+  String get verify;
+  String get login;
+  String get signUp;
+  String get sendOTP;
   String get email;
   String get password;
+  String get userName;
+  String get verificationCode;
+  String get confirmPassword;
+  String get newPassword;
+  String get updatePassword;
+  String get forgotPassword;
   String get msgEmailEmpty;
   String get msgEmailInvalid;
+  String get msgUserNameEmpty;
+  String get msgUserNameInvalid;
+  String get msgVerificationCodeEmpty;
   String get msgPasswordEmpty;
   String get msgPasswordError;
   String get msgPasswordNotMatch;
+
+  //SignUp Flow
+  String get basicDetails;
+  String get accountDetails;
+  String get contactDetails;
+  String get firstName;
+  String get lastName;
+  String get dateOfBirth;
+  String get next;
+  String get back;
+  String get signUpWithGoogle;
 }

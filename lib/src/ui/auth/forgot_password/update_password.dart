@@ -1,4 +1,3 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/src/base/dependencyinjection/locator.dart';
 import 'package:flutter_boilerplate/src/base/extensions/scaffold_extension.dart';
@@ -9,22 +8,21 @@ import 'package:flutter_boilerplate/src/base/utils/constants/image_constant.dart
 import 'package:flutter_boilerplate/src/base/utils/constants/navigation_route_constants.dart';
 import 'package:flutter_boilerplate/src/base/utils/localization/localization.dart';
 import 'package:flutter_boilerplate/src/base/utils/navigation_utils.dart';
+import 'package:flutter_boilerplate/src/ui/auth/signup/signup_screen.dart';
 import 'package:flutter_boilerplate/src/widgets/primary_button.dart';
 import 'package:flutter_boilerplate/src/widgets/primary_text_field.dart';
 import 'package:flutter_boilerplate/src/widgets/themewidgets/theme_text.dart';
 
-class SignUpScreen extends StatefulWidget {
-  const SignUpScreen({Key? key}) : super(key: key);
+class UpdatePasswordScreen extends StatefulWidget {
+  const UpdatePasswordScreen({Key? key}) : super(key: key);
 
   @override
-  State<SignUpScreen> createState() => _SignUpScreenState();
+  State<UpdatePasswordScreen> createState() => _UpdatePasswordScreenState();
 }
 
-class _SignUpScreenState extends State<SignUpScreen> {
-  final _emailController = TextEditingController();
+class _UpdatePasswordScreenState extends State<UpdatePasswordScreen> {
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
-  final _emailFocus = FocusNode();
   final _passwordFocus = FocusNode();
   final _confirmPasswordFocus = FocusNode();
   final _formKey = GlobalKey<FormState>();
@@ -41,37 +39,19 @@ class _SignUpScreenState extends State<SignUpScreen> {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              const Padding(
-                padding: EdgeInsets.all(20.0),
+              Padding(
+                padding: const EdgeInsets.all(20.0),
                 child: ThemeText(
-                  text: "SignUp",
+                  text: Localization.of().updatePassword,
                   lightTextColor: primaryTextColor,
                   fontSize: fontSize36,
                   fontWeight: fontWeightBold,
                 ),
               ),
-              const SizedBox(height: 28.0),
-              _getEmailTextField(),
               const SizedBox(height: 8.0),
               _getPasswordTextField(),
               const SizedBox(height: 8.0),
               _getConfirmPasswordTextField(),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 18.0),
-                child: Align(
-                  alignment: Alignment.centerRight,
-                  child: GestureDetector(
-                    onTap: () {
-                      locator<NavigationUtils>().push(routeForgotPassword);
-                    },
-                    child: const ThemeText(
-                      text: "Forgot Password?",
-                      lightTextColor: primaryTextColor,
-                      fontSize: fontSize14,
-                    ),
-                  ),
-                ),
-              ),
               const SizedBox(height: 8.0),
               _getLoginButton(),
               const SizedBox(height: 8.0),
@@ -142,27 +122,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
     ).authContainerScaffold(context: context);
   }
 
-  Widget _getEmailTextField() {
-    return PrimaryTextField(
-      hint: Localization.of().email,
-      focusNode: _emailFocus,
-      type: TextInputType.emailAddress,
-      textInputAction: TextInputAction.next,
-      controller: _emailController,
-      onFieldSubmitted: (value) {
-        _emailFocus.unfocus();
-        _passwordFocus.requestFocus();
-      },
-      validateFunction: (value) {
-        return value!.isValidEmail();
-      },
-    );
-  }
-
   Widget _getPasswordTextField() {
     return PrimaryTextField(
       isObscureText: true,
-      hint: Localization.of().password,
+      hint: Localization.of().newPassword,
       focusNode: _passwordFocus,
       type: TextInputType.visiblePassword,
       textInputAction: TextInputAction.next,
@@ -200,25 +163,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
       onButtonClick: () {
         if (_formKey.currentState!.validate()) {
           FocusScope.of(context).unfocus();
-          // locator<AuthController>().loginApiCall(context: context);
-          locator<NavigationUtils>().pushAndRemoveUntil(routeTabbar);
+          locator<NavigationUtils>().pushAndRemoveUntil(routeLogin);
         }
       },
       textColor: whiteColor,
       textFontWeight: fontWeightBold,
-      buttonText: "SignUp",
+      buttonText: Localization.of().updatePassword,
     );
-  }
-}
-
-class MyTapGestureRecognizer extends TapGestureRecognizer {
-  @override
-  void Function()? onTap;
-
-  @override
-  void handlePrimaryPointer(PointerEvent event) {
-    if (event is PointerUpEvent) {
-      onTap?.call();
-    }
   }
 }

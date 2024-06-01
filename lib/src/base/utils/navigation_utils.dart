@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_boilerplate/src/ui/auth/forgot_password/forgot_password_screen.dart';
+import 'package:flutter_boilerplate/src/ui/auth/forgot_password/update_password.dart';
+import 'package:flutter_boilerplate/src/ui/auth/forgot_password/verify_code_screen.dart';
 import 'package:flutter_boilerplate/src/ui/auth/login/login_screen.dart';
 import 'package:flutter_boilerplate/src/ui/auth/signup/signup_screen.dart';
 import 'package:flutter_boilerplate/src/ui/auth/spalsh/splash_screen.dart';
@@ -24,7 +27,7 @@ class NavigationUtils {
         return MaterialPageRoute(
           settings: settings,
           builder: (_) =>
-              const SplashScreen(), // To pass args use as const LoginScreen(id: args?["id"])
+              const SplashScreen(), // To pass args use as const SplashScreen(id: args?["id"])
         );
       case routeLogin:
         return MaterialPageRoute(
@@ -36,13 +39,31 @@ class NavigationUtils {
         return MaterialPageRoute(
           settings: settings,
           builder: (_) =>
-              const SignUpScreen(), // To pass args use as const LoginScreen(id: args?["id"])
+              const SignUpScreen(), // To pass args use as const SignUpScreen(id: args?["id"])
+        );
+      case routeForgotPassword:
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (_) =>
+              const ForgotPasswordScreen(), // To pass args use as const ForgotPasswordScreen(id: args?["id"])
+        );
+      case routeVerifyCode:
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (_) =>
+              const VerifyCodeScreen(), // To pass args use as const VerifyCodeScreen(id: args?["id"])
+        );
+      case routeUpdatePassword:
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (_) =>
+              const UpdatePasswordScreen(), // To pass args use as const SignUpScreen(id: args?["id"])
         );
       case routeTabbar:
         return MaterialPageRoute(
           settings: settings,
           builder: (_) =>
-              const HomeScreen(), // To pass args use as const LoginScreen(id: args?["id"])
+              const HomeScreen(), // To pass args use as const HomeScreen(id: args?["id"])
         );
       default:
         return _errorRoute(" Comming soon...");

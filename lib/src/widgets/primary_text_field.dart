@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_boilerplate/src/widgets/themewidgets/theme_text.dart';
 
 import '../base/utils/constants/color_constant.dart';
 import '../base/utils/constants/fontsize_constant.dart';
@@ -53,54 +54,72 @@ class PrimaryTextFieldState extends State<PrimaryTextField> {
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      autofocus: widget.autoFocus,
-      controller: widget.controller,
-      textInputAction: widget.textInputAction,
-      maxLength: widget.maxLength,
-      focusNode: widget.focusNode,
-      textCapitalization: TextCapitalization.sentences,
-      enabled: widget.enabled,
-      style: const TextStyle(
-        color: primaryTextColor,
-        fontSize: fontSize16,
-        fontWeight: fontWeightRegular,
-      ),
-      decoration: InputDecoration(
-        labelText: widget.hint,
-        counter: const Offstage(),
-        contentPadding: const EdgeInsets.symmetric(horizontal: 18.0),
-        floatingLabelBehavior: FloatingLabelBehavior.auto,
-        alignLabelWithHint: true,
-        errorStyle: const TextStyle(color: Colors.red),
-        errorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10.0),
-          borderSide: const BorderSide(color: Colors.red, width: 1.0),
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(left: 10.0),
+          child: ThemeText(
+            text: widget.hint,
+            lightTextColor: primaryTextColor,
+            fontSize: fontSize16,
+            fontWeight: fontWeightMedium,
+          ),
         ),
-        errorMaxLines: 3,
-        labelStyle: const TextStyle(fontSize: fontSize14, color: Colors.grey),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10.0),
-          borderSide: const BorderSide(color: primaryColor, width: 1),
+        TextFormField(
+          autofocus: widget.autoFocus,
+          controller: widget.controller,
+          textInputAction: widget.textInputAction,
+          maxLength: widget.maxLength,
+          focusNode: widget.focusNode,
+          textCapitalization: TextCapitalization.sentences,
+          enabled: widget.enabled,
+          style: const TextStyle(
+            color: primaryTextColor,
+            fontSize: fontSize16,
+            fontWeight: fontWeightRegular,
+          ),
+          decoration: InputDecoration(
+            hintText: widget.hint,
+            counter: const Offstage(),
+            contentPadding: const EdgeInsets.symmetric(horizontal: 18.0),
+            floatingLabelBehavior: FloatingLabelBehavior.auto,
+            alignLabelWithHint: true,
+            errorStyle: const TextStyle(color: Colors.red),
+            errorBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10.0),
+              borderSide: const BorderSide(color: Colors.red, width: 1.0),
+            ),
+            errorMaxLines: 3,
+            labelStyle:
+                const TextStyle(fontSize: fontSize14, color: Colors.grey),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10.0),
+              borderSide: const BorderSide(color: primaryColor, width: 1),
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10.0),
+              borderSide: const BorderSide(color: primaryColor, width: 1),
+            ),
+            focusedErrorBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10.0),
+              borderSide: const BorderSide(color: Colors.red, width: 1),
+            ),
+            suffixIcon:
+                widget.isObscureText ? _passwordIcon() : _suffixIconCheck(),
+          ),
+          maxLines: widget.maxLines,
+          onFieldSubmitted: widget.onFieldSubmitted,
+          validator: widget.validateFunction,
+          onSaved: widget.onSaved,
+          inputFormatters: widget.textInputFormatter,
+          keyboardType: widget.type,
+          obscureText: widget.isObscureText ? _obscureText : false,
+          onChanged: widget.onChanged,
         ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10.0),
-          borderSide: const BorderSide(color: primaryColor, width: 1),
-        ),
-        focusedErrorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10.0),
-          borderSide: const BorderSide(color: Colors.red, width: 1),
-        ),
-        suffixIcon: widget.isObscureText ? _passwordIcon() : _suffixIconCheck(),
-      ),
-      maxLines: widget.maxLines,
-      onFieldSubmitted: widget.onFieldSubmitted,
-      validator: widget.validateFunction,
-      onSaved: widget.onSaved,
-      inputFormatters: widget.textInputFormatter,
-      keyboardType: widget.type,
-      obscureText: widget.isObscureText ? _obscureText : false,
-      onChanged: widget.onChanged,
+      ],
     );
   }
 

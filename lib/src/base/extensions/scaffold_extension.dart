@@ -6,6 +6,7 @@ import 'package:flutter_boilerplate/src/base/utils/constants/image_constant.dart
 extension ScaffoldExtension on Widget {
   Scaffold authContainerScaffold({required BuildContext context}) {
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       body: SafeArea(
         top: true,
         bottom: false,
@@ -19,9 +20,12 @@ extension ScaffoldExtension on Widget {
               SizedBox(height: context.getHeight(0.08)),
               Expanded(
                 child: Container(
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     color: whiteColor,
-                    borderRadius: BorderRadius.circular(50.0),
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(50.0),
+                      topRight: Radius.circular(50.0),
+                    ),
                   ),
                   child: this,
                 ),
@@ -29,6 +33,14 @@ extension ScaffoldExtension on Widget {
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Scaffold homeContainerScaffold({required BuildContext context}) {
+    return Scaffold(
+      body: SafeArea(
+        child: this,
       ),
     );
   }

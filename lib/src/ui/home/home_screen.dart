@@ -20,6 +20,6 @@ class _HomeScreenState extends State<HomeScreen> {
         lightTextColor: primaryTextColor,
         fontSize: fontSize18,
       ),
-    ).authContainerScaffold(context: context);
+    ).homeContainerScaffold(context: context);
   }
 }
