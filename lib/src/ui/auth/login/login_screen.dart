@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/src/base/dependencyinjection/locator.dart';
 import 'package:flutter_boilerplate/src/base/extensions/scaffold_extension.dart';
+import 'package:flutter_boilerplate/src/base/utils/constants/app_constant.dart';
 import 'package:flutter_boilerplate/src/base/utils/constants/color_constant.dart';
 import 'package:flutter_boilerplate/src/base/utils/constants/fontsize_constant.dart';
 import 'package:flutter_boilerplate/src/base/utils/constants/image_constant.dart';
@@ -47,7 +48,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   fontWeight: fontWeightBold,
                 ),
               ),
-              const SizedBox(height: 28.0),
+              const SizedBox(height: 20.0),
               _getEmailTextField(),
               const SizedBox(height: 8.0),
               _getPasswordTextField(),
@@ -79,6 +80,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         text: "I am new user",
                         style: TextStyle(
                           fontSize: fontSize14,
+                          fontFamily: fontFamily,
                           color: primaryTextColor,
                         ),
                       ),
@@ -93,6 +95,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           fontSize: fontSize14,
                           color: primaryTextColor,
                           fontWeight: fontWeightSemiBold,
+                          fontFamily: fontFamily,
                         ),
                       ),
                     ],

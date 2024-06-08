@@ -19,8 +19,16 @@ ThemeData lightThemeData() {
         fillColor: MaterialStateProperty.all<Color>(secondaryColor)),
     checkboxTheme: CheckboxThemeData(
         fillColor: MaterialStateProperty.all<Color>(secondaryColor)),
+    datePickerTheme: const DatePickerThemeData(
+      backgroundColor: Colors.white,
+    ),
     bottomSheetTheme: const BottomSheetThemeData(backgroundColor: Colors.white),
-    dialogTheme: const DialogTheme(backgroundColor: Colors.white),
+    dialogTheme: const DialogTheme(
+      backgroundColor: Colors.white,
+      titleTextStyle: TextStyle(
+        color: blackColor,
+      ),
+    ),
     scaffoldBackgroundColor: Colors.white,
     brightness: Brightness.light,
     primaryColor: primaryColor,

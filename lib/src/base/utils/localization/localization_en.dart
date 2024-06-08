@@ -63,6 +63,9 @@ class LocalizationEN implements Localization {
   String get signUp => "SignUp";
 
   @override
+  String get mobile => "Phone No.";
+
+  @override
   String get sendOTP => "Send OTP";
 
   @override
@@ -99,6 +102,9 @@ class LocalizationEN implements Localization {
   String get msgUserNameEmpty => "Username is empty";
 
   @override
+  String get msgPhoneEmpty => "Mobile number is empty";
+
+  @override
   String get msgVerificationCodeEmpty => "Verification Code is empty";
 
   @override
@@ -123,6 +129,21 @@ class LocalizationEN implements Localization {
 
   @override
   String get contactDetails => "Contact Details";
+
+  @override
+  String get country => "Country";
+
+  @override
+  String get state => "State";
+
+  @override
+  String get postalCode => "Postal Code";
+
+  @override
+  String get city => "City";
+
+  @override
+  String get address => "Address";
 
   @override
   String get firstName => "First Name";
