@@ -1,2 +1,3 @@
 // Auth Api Endpoints
-const String apiLogin = "auth/sign-in";
+const String apiLogin = "/get-token";
+const String apiRegister = "/register/";

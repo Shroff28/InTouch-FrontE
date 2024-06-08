@@ -8,6 +8,8 @@ import 'package:flutter_boilerplate/src/base/utils/constants/image_constant.dart
 import 'package:flutter_boilerplate/src/base/utils/constants/navigation_route_constants.dart';
 import 'package:flutter_boilerplate/src/base/utils/localization/localization.dart';
 import 'package:flutter_boilerplate/src/base/utils/navigation_utils.dart';
+import 'package:flutter_boilerplate/src/controllers/auth/auth_controller.dart';
+import 'package:flutter_boilerplate/src/models/auth/login_model.dart';
 import 'package:flutter_boilerplate/src/ui/auth/signup/signup_screen.dart';
 import 'package:flutter_boilerplate/src/widgets/primary_button.dart';
 import 'package:flutter_boilerplate/src/widgets/primary_text_field.dart';
@@ -88,7 +90,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         recognizer: MyTapGestureRecognizer()
                           ..onTap = () {
                             locator<NavigationUtils>()
-                                .pushAndRemoveUntil(routeSignUp);
+                                .pushReplacement(routeSignUp);
                           },
                         text: " Sign Up",
                         style: const TextStyle(
@@ -180,8 +182,13 @@ class _LoginScreenState extends State<LoginScreen> {
       onButtonClick: () {
         if (_formKey.currentState!.validate()) {
           FocusScope.of(context).unfocus();
-          locator<NavigationUtils>().pushAndRemoveUntil(routeTabbar);
-          // locator<AuthController>().loginApiCall(context: context);
+          locator<AuthController>().loginApiCall(
+            context: context,
+            model: ReqLoginModel(
+              email: _emailController.text,
+              password: _passwordController.text,
+            ),
+          );
         }
       },
       textColor: whiteColor,
