@@ -48,7 +48,7 @@ class MyApp extends StatelessWidget {
           darkTheme: darkThemeData(),
           navigatorKey: locator<NavigationUtils>().navigatorKey,
           onGenerateRoute: locator<NavigationUtils>().generateRoute,
-          initialRoute: routeAccountSetup,
+          initialRoute: routeSplash,
           localizationsDelegates: const [
             MyLocalizationsDelegate(),
             DefaultMaterialLocalizations.delegate,

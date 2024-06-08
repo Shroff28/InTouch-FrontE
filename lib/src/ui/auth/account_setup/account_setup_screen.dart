@@ -34,6 +34,9 @@ class _AccountSetupScreenState extends State<AccountSetupScreen> {
   final _phoneController = TextEditingController();
   final _addressController = TextEditingController();
   final _postalCodeController = TextEditingController();
+  final _cityController = TextEditingController();
+  final _countryController = TextEditingController();
+  final _stateController = TextEditingController();
   final _userNameFocus = FocusNode();
   final _firstNameFocus = FocusNode();
   final _lastNameFocus = FocusNode();
@@ -41,6 +44,9 @@ class _AccountSetupScreenState extends State<AccountSetupScreen> {
   final _phoneFocus = FocusNode();
   final _addressFocus = FocusNode();
   final _postalCodeFocus = FocusNode();
+  final _cityFocus = FocusNode();
+  final _countryFocus = FocusNode();
+  final _stateFocus = FocusNode();
   final _formKey = GlobalKey<FormState>();
   final ValueNotifier<int> _currentTab = ValueNotifier<int>(1);
   final _pickedImage = ValueNotifier<File?>(null);
@@ -118,7 +124,8 @@ class _AccountSetupScreenState extends State<AccountSetupScreen> {
                           },
                         ),
                       ],
-                    )
+                    ),
+                    const SizedBox(height: 20)
                   ],
                 );
               }),
@@ -139,8 +146,6 @@ class _AccountSetupScreenState extends State<AccountSetupScreen> {
         const SizedBox(height: 8.0),
         _getLastNameTextField(),
         const SizedBox(height: 8.0),
-        _getDateofBirthTextField(),
-        const SizedBox(height: 8.0),
       ],
     );
   }
@@ -149,6 +154,8 @@ class _AccountSetupScreenState extends State<AccountSetupScreen> {
     return Column(
       children: [
         const SizedBox(height: 20.0),
+        _getDateofBirthTextField(),
+        const SizedBox(height: 8.0),
         _getMobileTextField(),
         const SizedBox(height: 8.0),
         Row(
@@ -156,12 +163,22 @@ class _AccountSetupScreenState extends State<AccountSetupScreen> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             SizedBox(
-                width: context.getWidth(0.5), child: _getAddressTextField()),
+                width: context.getWidth(0.55), child: _getAddressTextField()),
             SizedBox(
                 width: context.getWidth(0.3), child: _getPostalCodeTextField()),
           ],
         ),
         const SizedBox(height: 8.0),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            SizedBox(width: context.getWidth(0.2), child: _getCityTextField()),
+            SizedBox(width: context.getWidth(0.2), child: _getstateTextField()),
+            SizedBox(
+                width: context.getWidth(0.4), child: _getCountryTextField()),
+          ],
+        ),
       ],
     );
   }
@@ -188,11 +205,10 @@ class _AccountSetupScreenState extends State<AccountSetupScreen> {
       hint: Localization.of().lastName,
       focusNode: _lastNameFocus,
       type: TextInputType.text,
-      textInputAction: TextInputAction.next,
+      textInputAction: TextInputAction.done,
       controller: _lastNameController,
       onFieldSubmitted: (value) {
         _lastNameFocus.unfocus();
-        // _dateOfBirthFocus.requestFocus();
       },
       validateFunction: (value) {
         return value!.isFieldEmpty("Last Name is empty");
@@ -214,10 +230,11 @@ class _AccountSetupScreenState extends State<AccountSetupScreen> {
       hint: Localization.of().dateOfBirth,
       focusNode: _dateOfBirthFocus,
       type: TextInputType.text,
-      textInputAction: TextInputAction.done,
+      textInputAction: TextInputAction.next,
       controller: _dateOfBirthController,
       onFieldSubmitted: (value) {
         _dateOfBirthFocus.unfocus();
+        _phoneFocus.requestFocus();
       },
       trailingIcon: icCalendar,
       validateFunction: (value) {
@@ -286,15 +303,66 @@ class _AccountSetupScreenState extends State<AccountSetupScreen> {
   Widget _getPostalCodeTextField() {
     return PrimaryTextField(
       hint: Localization.of().postalCode,
-      focusNode: _addressFocus,
+      focusNode: _postalCodeFocus,
       type: TextInputType.text,
       textInputAction: TextInputAction.next,
       controller: _postalCodeController,
       onFieldSubmitted: (value) {
         _postalCodeFocus.unfocus();
+        _cityFocus.requestFocus();
       },
       validateFunction: (value) {
         return value!.isFieldEmpty("Postal Code is Empty");
+      },
+    );
+  }
+
+  Widget _getCityTextField() {
+    return PrimaryTextField(
+      hint: Localization.of().city,
+      focusNode: _cityFocus,
+      type: TextInputType.text,
+      textInputAction: TextInputAction.next,
+      controller: _cityController,
+      onFieldSubmitted: (value) {
+        _cityFocus.unfocus();
+        _stateFocus.requestFocus();
+      },
+      validateFunction: (value) {
+        return value!.isFieldEmpty("City is Empty");
+      },
+    );
+  }
+
+  Widget _getstateTextField() {
+    return PrimaryTextField(
+      hint: Localization.of().state,
+      focusNode: _stateFocus,
+      type: TextInputType.text,
+      textInputAction: TextInputAction.next,
+      controller: _stateController,
+      onFieldSubmitted: (value) {
+        _stateFocus.unfocus();
+        _countryFocus.requestFocus();
+      },
+      validateFunction: (value) {
+        return value!.isFieldEmpty("State is Empty");
+      },
+    );
+  }
+
+  Widget _getCountryTextField() {
+    return PrimaryTextField(
+      hint: Localization.of().country,
+      focusNode: _countryFocus,
+      type: TextInputType.text,
+      textInputAction: TextInputAction.done,
+      controller: _countryController,
+      onFieldSubmitted: (value) {
+        _countryFocus.unfocus();
+      },
+      validateFunction: (value) {
+        return value!.isFieldEmpty("Country is Empty");
       },
     );
   }
