@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_boilerplate/src/base/utils/constants/color_constant.dart';
+import 'package:flutter_boilerplate/src/base/utils/constants/fontsize_constant.dart';
 import 'package:flutter_boilerplate/src/widgets/themewidgets/theme_text.dart';
 
-import '../base/utils/constants/color_constant.dart';
-import '../base/utils/constants/fontsize_constant.dart';
 
 class PrimaryTextField extends StatefulWidget {
   final String hint;
@@ -21,6 +21,7 @@ class PrimaryTextField extends StatefulWidget {
   final Function? endIconClick;
   final Function(String)? onFieldSubmitted;
   final Function(String)? onChanged;
+  final void Function()? onTap;
   final int maxLines;
   final bool autoFocus;
 
@@ -30,6 +31,7 @@ class PrimaryTextField extends StatefulWidget {
       required this.focusNode,
       required this.type,
       this.trailingIcon,
+      this.onTap,
       this.isObscureText = false,
       required this.textInputAction,
       this.enabled = true,
@@ -69,6 +71,7 @@ class PrimaryTextFieldState extends State<PrimaryTextField> {
           ),
         ),
         TextFormField(
+          onTap: widget.onTap,
           autofocus: widget.autoFocus,
           controller: widget.controller,
           textInputAction: widget.textInputAction,

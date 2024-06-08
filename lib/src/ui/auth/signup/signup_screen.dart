@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/src/base/dependencyinjection/locator.dart';
 import 'package:flutter_boilerplate/src/base/extensions/scaffold_extension.dart';
 import 'package:flutter_boilerplate/src/base/extensions/string_extension.dart';
+import 'package:flutter_boilerplate/src/base/utils/constants/app_constant.dart';
 import 'package:flutter_boilerplate/src/base/utils/constants/color_constant.dart';
 import 'package:flutter_boilerplate/src/base/utils/constants/fontsize_constant.dart';
 import 'package:flutter_boilerplate/src/base/utils/constants/image_constant.dart';
@@ -41,16 +42,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              const Padding(
-                padding: EdgeInsets.all(20.0),
+              Padding(
+                padding: const EdgeInsets.all(20.0),
                 child: ThemeText(
-                  text: "SignUp",
+                  text: Localization.of().signUp,
                   lightTextColor: primaryTextColor,
                   fontSize: fontSize36,
                   fontWeight: fontWeightBold,
                 ),
               ),
-              const SizedBox(height: 28.0),
+              const SizedBox(height: 20.0),
               _getEmailTextField(),
               const SizedBox(height: 8.0),
               _getPasswordTextField(),
@@ -64,8 +65,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     onTap: () {
                       locator<NavigationUtils>().push(routeForgotPassword);
                     },
-                    child: const ThemeText(
-                      text: "Forgot Password?",
+                    child: ThemeText(
+                      text: "${Localization.of().forgotPassword}?",
                       lightTextColor: primaryTextColor,
                       fontSize: fontSize14,
                     ),
@@ -85,6 +86,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         style: TextStyle(
                           fontSize: fontSize14,
                           color: primaryTextColor,
+                          fontFamily: fontFamily,
                         ),
                       ),
                       TextSpan(
@@ -93,11 +95,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             locator<NavigationUtils>()
                                 .pushReplacement(routeLogin);
                           },
-                        text: " Login",
+                        text: " ${Localization.of().login}",
                         style: const TextStyle(
                           fontSize: fontSize14,
                           color: primaryTextColor,
                           fontWeight: fontWeightSemiBold,
+                          fontFamily: fontFamily,
                         ),
                       ),
                     ],
@@ -201,12 +204,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
         if (_formKey.currentState!.validate()) {
           FocusScope.of(context).unfocus();
           // locator<AuthController>().loginApiCall(context: context);
-          locator<NavigationUtils>().pushAndRemoveUntil(routeTabbar);
+          // locator<NavigationUtils>().pushAndRemoveUntil(routeTabbar);
+          locator<NavigationUtils>().pushAndRemoveUntil(routeAccountSetup);
         }
       },
       textColor: whiteColor,
       textFontWeight: fontWeightBold,
-      buttonText: "SignUp",
+      buttonText: Localization.of().signUp,
     );
   }
 }

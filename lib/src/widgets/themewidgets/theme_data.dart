@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_boilerplate/src/widgets/shadow_border.dart';
 
 import '../../base/utils/common_ui_methods.dart';
 import '../../base/utils/constants/color_constant.dart';
@@ -20,7 +21,59 @@ ThemeData lightThemeData() {
     checkboxTheme: CheckboxThemeData(
         fillColor: MaterialStateProperty.all<Color>(secondaryColor)),
     bottomSheetTheme: const BottomSheetThemeData(backgroundColor: Colors.white),
-    dialogTheme: const DialogTheme(backgroundColor: Colors.white),
+    dialogTheme: const DialogTheme(
+      backgroundColor: Colors.white,
+      titleTextStyle: TextStyle(
+        color: blackColor,
+      ),
+    ),
+    inputDecorationTheme: InputDecorationTheme(
+      border: DecoratedInputBorder(
+        child: const OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(16.0)),
+        ),
+        shadow: BoxShadow(
+          color: blackColor.withOpacity(0.5),
+          blurRadius: 15,
+        ),
+      ),
+      enabledBorder: DecoratedInputBorder(
+        child: const OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(16.0)),
+        ),
+        shadow: BoxShadow(
+          color: blackColor.withOpacity(0.5),
+          blurRadius: 15,
+        ),
+      ),
+      focusedBorder: DecoratedInputBorder(
+        child: const OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(16.0)),
+        ),
+        shadow: BoxShadow(
+          color: blackColor.withOpacity(0.5),
+          blurRadius: 15,
+        ),
+      ),
+      errorBorder: DecoratedInputBorder(
+        child: const OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(16.0)),
+        ),
+        shadow: BoxShadow(
+          color: blackColor.withOpacity(0.5),
+          blurRadius: 15,
+        ),
+      ),
+      disabledBorder: DecoratedInputBorder(
+        child: const OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(16.0)),
+        ),
+        shadow: BoxShadow(
+          color: blackColor.withOpacity(0.5),
+          blurRadius: 15,
+        ),
+      ),
+    ),
     scaffoldBackgroundColor: Colors.white,
     brightness: Brightness.light,
     primaryColor: primaryColor,

@@ -72,6 +72,7 @@ abstract class Localization {
   String get login;
   String get signUp;
   String get sendOTP;
+  String get mobile;
   String get email;
   String get password;
   String get userName;
@@ -83,6 +84,7 @@ abstract class Localization {
   String get msgEmailEmpty;
   String get msgEmailInvalid;
   String get msgUserNameEmpty;
+  String get msgPhoneEmpty;
   String get msgUserNameInvalid;
   String get msgVerificationCodeEmpty;
   String get msgPasswordEmpty;
@@ -93,6 +95,11 @@ abstract class Localization {
   String get basicDetails;
   String get accountDetails;
   String get contactDetails;
+  String get country;
+  String get state;
+  String get postalCode;
+  String get city;
+  String get address;
   String get firstName;
   String get lastName;
   String get dateOfBirth;

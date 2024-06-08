@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_boilerplate/src/ui/auth/account_setup/account_setup_screen.dart';
 import 'package:flutter_boilerplate/src/ui/auth/forgot_password/forgot_password_screen.dart';
 import 'package:flutter_boilerplate/src/ui/auth/forgot_password/update_password.dart';
 import 'package:flutter_boilerplate/src/ui/auth/forgot_password/verify_code_screen.dart';
@@ -40,6 +41,12 @@ class NavigationUtils {
           settings: settings,
           builder: (_) =>
               const SignUpScreen(), // To pass args use as const SignUpScreen(id: args?["id"])
+        );
+      case routeAccountSetup:
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (_) =>
+              const AccountSetupScreen(), // To pass args use as const SignUpScreen(id: args?["id"])
         );
       case routeForgotPassword:
         return MaterialPageRoute(

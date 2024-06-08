@@ -1,14 +1,15 @@
 import 'dart:io';
 
 import 'package:app_settings/app_settings.dart';
-
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_boilerplate/src/base/utils/constants/color_constant.dart';
 import 'package:flutter_boilerplate/src/base/utils/constants/preference_key_constant.dart';
 import 'package:flutter_boilerplate/src/base/utils/preference_utils.dart';
+import 'package:flutter_boilerplate/src/widgets/media_picker_widget.dart';
 import 'package:image_picker/image_picker.dart';
 
 import 'common_ui_methods.dart';
@@ -114,4 +115,38 @@ Future<DateTime?> pickDate(
     },
   );
   return picked;
+}
+
+Future<void> getImageBottomSheet({
+  required BuildContext context,
+  required Function onGalleryClick,
+  required Function onCameraClick,
+}) {
+  return showModalBottomSheet(
+    backgroundColor: whiteColor,
+    context: context,
+    builder: (ctx) => MediaPickerBottomSheet(
+      title: 'Select Option',
+      children: <Widget>[
+        getBottomSheetAction(
+          context: context,
+          icon: Icons.photo,
+          title: Localization.of().galleryTitle,
+          onTap: onGalleryClick,
+        ),
+        getBottomSheetAction(
+          context: context,
+          icon: Icons.camera,
+          title: Localization.of().cameraTitle,
+          onTap: onCameraClick,
+        ),
+        getBottomSheetAction(
+          context: context,
+          icon: Icons.close,
+          title: Localization.of().cancel,
+          onTap: () {},
+        ),
+      ],
+    ),
+  );
 }
