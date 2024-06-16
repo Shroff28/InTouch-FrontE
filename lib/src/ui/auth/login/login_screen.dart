@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/src/base/dependencyinjection/locator.dart';
 import 'package:flutter_boilerplate/src/base/extensions/scaffold_extension.dart';
+import 'package:flutter_boilerplate/src/base/extensions/string_extension.dart';
 import 'package:flutter_boilerplate/src/base/utils/constants/app_constant.dart';
 import 'package:flutter_boilerplate/src/base/utils/constants/color_constant.dart';
 import 'package:flutter_boilerplate/src/base/utils/constants/fontsize_constant.dart';
@@ -139,7 +140,7 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
         ),
       ),
-    ).authContainerScaffold(context: context);
+    ).authContainerScaffold(context: context, isLeadingEnabled: false);
   }
 
   Widget _getEmailTextField() {
@@ -153,9 +154,9 @@ class _LoginScreenState extends State<LoginScreen> {
         _emailFocus.unfocus();
         _passwordFocus.requestFocus();
       },
-      // validateFunction: (value) {
-      //   return value!.isValidEmail();
-      // },
+      validateFunction: (value) {
+        return value!.isFieldEmpty(Localization.of().msgEmailEmpty);
+      },
     );
   }
 
@@ -170,9 +171,9 @@ class _LoginScreenState extends State<LoginScreen> {
       onFieldSubmitted: (value) {
         _passwordFocus.unfocus();
       },
-      // validateFunction: (value) {
-      //   return value!.isValidPassword();
-      // },
+      validateFunction: (value) {
+        return value!.isFieldEmpty(Localization.of().msgPasswordEmpty);
+      },
     );
   }
 

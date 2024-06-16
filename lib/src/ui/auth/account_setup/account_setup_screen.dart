@@ -9,10 +9,10 @@ import 'package:flutter_boilerplate/src/base/utils/common_methods.dart';
 import 'package:flutter_boilerplate/src/base/utils/constants/color_constant.dart';
 import 'package:flutter_boilerplate/src/base/utils/constants/fontsize_constant.dart';
 import 'package:flutter_boilerplate/src/base/utils/constants/image_constant.dart';
-import 'package:flutter_boilerplate/src/base/utils/constants/navigation_route_constants.dart';
 import 'package:flutter_boilerplate/src/base/utils/date_utils.dart';
 import 'package:flutter_boilerplate/src/base/utils/localization/localization.dart';
-import 'package:flutter_boilerplate/src/base/utils/navigation_utils.dart';
+import 'package:flutter_boilerplate/src/controllers/auth/auth_controller.dart';
+import 'package:flutter_boilerplate/src/models/auth/profile_model.dart';
 import 'package:flutter_boilerplate/src/widgets/mobile_text_field.dart';
 import 'package:flutter_boilerplate/src/widgets/primary_button.dart';
 import 'package:flutter_boilerplate/src/widgets/primary_text_field.dart';
@@ -27,7 +27,6 @@ class AccountSetupScreen extends StatefulWidget {
 }
 
 class _AccountSetupScreenState extends State<AccountSetupScreen> {
-  final _userNameController = TextEditingController();
   final _firstNameController = TextEditingController();
   final _lastNameController = TextEditingController();
   final _dateOfBirthController = TextEditingController();
@@ -37,7 +36,6 @@ class _AccountSetupScreenState extends State<AccountSetupScreen> {
   final _cityController = TextEditingController();
   final _countryController = TextEditingController();
   final _stateController = TextEditingController();
-  final _userNameFocus = FocusNode();
   final _firstNameFocus = FocusNode();
   final _lastNameFocus = FocusNode();
   final _dateOfBirthFocus = FocusNode();
@@ -48,7 +46,7 @@ class _AccountSetupScreenState extends State<AccountSetupScreen> {
   final _countryFocus = FocusNode();
   final _stateFocus = FocusNode();
   final _formKey = GlobalKey<FormState>();
-  final ValueNotifier<int> _currentTab = ValueNotifier<int>(1);
+  final ValueNotifier<int> _currentTab = ValueNotifier<int>(0);
   final _pickedImage = ValueNotifier<File?>(null);
   String _countryCode = "+1";
 
@@ -117,8 +115,23 @@ class _AccountSetupScreenState extends State<AccountSetupScreen> {
                               if (_currentTab.value == 0) {
                                 _currentTab.value = 1;
                               } else {
-                                locator<NavigationUtils>()
-                                    .pushAndRemoveUntil(routeTabbar);
+                                locator<AuthController>().profileUpdateApiCall(
+                                  context: context,
+                                  model: ReqProfileModel(
+                                    firstName: _firstNameController.text.trim(),
+                                    lastName: _lastNameController.text.trim(),
+                                    dateOfBirth:
+                                        _dateOfBirthController.text.trim(),
+                                    address: _addressController.text.trim(),
+                                    city: _cityController.text.trim(),
+                                    country: _countryController.text.trim(),
+                                    postalCode:
+                                        _postalCodeController.text.trim(),
+                                    phoneNumber:
+                                        "$_countryCode${_phoneController.text.trim()}",
+                                    state: _stateController.text.trim(),
+                                  ),
+                                );
                               }
                             }
                           },
@@ -131,7 +144,7 @@ class _AccountSetupScreenState extends State<AccountSetupScreen> {
               }),
         ),
       ),
-    ).authContainerScaffold(context: context);
+    ).authContainerScaffold(context: context, isLeadingEnabled: false);
   }
 
   Widget _getFirstTab() {
@@ -140,11 +153,11 @@ class _AccountSetupScreenState extends State<AccountSetupScreen> {
         const SizedBox(height: 20.0),
         _getImageWidget(),
         const SizedBox(height: 8.0),
-        _getUserNameTextField(),
-        const SizedBox(height: 8.0),
         _getFirstNameTextField(),
         const SizedBox(height: 8.0),
         _getLastNameTextField(),
+        const SizedBox(height: 8.0),
+        _getDateofBirthTextField(),
         const SizedBox(height: 8.0),
       ],
     );
@@ -154,8 +167,6 @@ class _AccountSetupScreenState extends State<AccountSetupScreen> {
     return Column(
       children: [
         const SizedBox(height: 20.0),
-        _getDateofBirthTextField(),
-        const SizedBox(height: 8.0),
         _getMobileTextField(),
         const SizedBox(height: 8.0),
         Row(
@@ -234,28 +245,11 @@ class _AccountSetupScreenState extends State<AccountSetupScreen> {
       controller: _dateOfBirthController,
       onFieldSubmitted: (value) {
         _dateOfBirthFocus.unfocus();
-        _phoneFocus.requestFocus();
       },
+      enabled: false,
       trailingIcon: icCalendar,
       validateFunction: (value) {
         return value!.isFieldEmpty("Date of Birth is empty");
-      },
-    );
-  }
-
-  Widget _getUserNameTextField() {
-    return PrimaryTextField(
-      hint: Localization.of().userName,
-      focusNode: _userNameFocus,
-      type: TextInputType.text,
-      textInputAction: TextInputAction.next,
-      controller: _userNameController,
-      onFieldSubmitted: (value) {
-        _userNameFocus.unfocus();
-        _firstNameFocus.requestFocus();
-      },
-      validateFunction: (value) {
-        return value!.isFieldEmpty("User name is empty");
       },
     );
   }

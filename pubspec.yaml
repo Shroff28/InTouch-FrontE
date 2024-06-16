@@ -28,6 +28,7 @@ dependencies:
   flutter_dotenv: ^5.0.2 # To Store variables in env file
   rxdart: ^0.27.7
   intl_phone_field: ^3.2.0
+  flutter_svg: ^2.0.10+1
 
 dev_dependencies:
   flutter_test:

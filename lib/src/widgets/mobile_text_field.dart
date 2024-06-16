@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_boilerplate/src/base/utils/constants/app_constant.dart';
@@ -48,10 +46,7 @@ class MobileTextField extends StatefulWidget {
 }
 
 class _MobileTextFieldState extends State<MobileTextField> {
-  String number = PhoneNumber(
-          countryISOCode: Platform.localeName.split('_').last,
-          countryCode: 'US',
-          number: '')
+  String number = PhoneNumber(countryISOCode: "", countryCode: 'US', number: '')
       .countryCode;
 
   @override

@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_boilerplate/src/base/dependencyinjection/locator.dart';
 import 'package:flutter_boilerplate/src/base/extensions/context_extension.dart';
 import 'package:flutter_boilerplate/src/base/utils/constants/color_constant.dart';
 import 'package:flutter_boilerplate/src/base/utils/constants/image_constant.dart';
+import 'package:flutter_boilerplate/src/base/utils/navigation_utils.dart';
 
 extension ScaffoldExtension on Widget {
-  Scaffold authContainerScaffold({required BuildContext context}) {
+  Scaffold authContainerScaffold(
+      {required BuildContext context, required bool isLeadingEnabled}) {
     return Scaffold(
       resizeToAvoidBottomInset: true,
       body: SafeArea(
@@ -14,9 +17,36 @@ extension ScaffoldExtension on Widget {
           color: primaryColor,
           height: context.getHeight(),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SizedBox(height: context.getHeight(0.07)),
-              Image.asset(headerLogo, height: 40),
+              isLeadingEnabled
+                  ? Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        IconButton(
+                          onPressed: () {
+                            locator<NavigationUtils>().pop();
+                          },
+                          icon: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20.0),
+                              color: whiteColor,
+                            ),
+                            padding: const EdgeInsets.all(10.0),
+                            child: const Icon(
+                              Icons.arrow_back_ios_new_rounded,
+                              size: 30,
+                              color: primaryColor,
+                            ),
+                          ),
+                        ),
+                        Image.asset(headerLogo, height: 40),
+                        const SizedBox(width: 10),
+                      ],
+                    )
+                  : Image.asset(headerLogo, height: 40),
               SizedBox(height: context.getHeight(0.08)),
               Expanded(
                 child: Container(

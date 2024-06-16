@@ -162,4 +162,19 @@ class LocalizationEN implements Localization {
 
   @override
   String get signUpWithGoogle => "Sign Up with Google";
+
+  @override
+  String get home => "Home";
+
+  @override
+  String get chat => "Chat";
+
+  @override
+  String get video => "Video";
+
+  @override
+  String get audio => "Audio";
+
+  @override
+  String get community => "Community";
 }

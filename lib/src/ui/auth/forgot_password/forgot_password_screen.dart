@@ -8,6 +8,7 @@ import 'package:flutter_boilerplate/src/base/utils/constants/image_constant.dart
 import 'package:flutter_boilerplate/src/base/utils/constants/navigation_route_constants.dart';
 import 'package:flutter_boilerplate/src/base/utils/localization/localization.dart';
 import 'package:flutter_boilerplate/src/base/utils/navigation_utils.dart';
+import 'package:flutter_boilerplate/src/controllers/auth/auth_controller.dart';
 import 'package:flutter_boilerplate/src/ui/auth/signup/signup_screen.dart';
 import 'package:flutter_boilerplate/src/widgets/primary_button.dart';
 import 'package:flutter_boilerplate/src/widgets/primary_text_field.dart';
@@ -125,7 +126,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
           ),
         ),
       ),
-    ).authContainerScaffold(context: context);
+    ).authContainerScaffold(context: context, isLeadingEnabled: true);
   }
 
   Widget _getEmailTextField() {
@@ -168,8 +169,9 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
       onButtonClick: () {
         if (_formKey.currentState!.validate()) {
           FocusScope.of(context).unfocus();
-          locator<NavigationUtils>().pushReplacement(routeVerifyCode);
-          // locator<AuthController>().loginApiCall(context: context);
+          locator<AuthController>().forgotPasswordApiCall(
+              context: context,
+              email: _emailController.text.trim().toLowerCase());
         }
       },
       textColor: whiteColor,
