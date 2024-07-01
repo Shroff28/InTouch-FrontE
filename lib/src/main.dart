@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_boilerplate/src/base/utils/constants/navigation_route_constants.dart';
 import 'package:flutter_boilerplate/src/base/utils/localization/localization.dart';
 import 'package:flutter_boilerplate/src/base/utils/preference_utils.dart';
+import 'package:flutter_boilerplate/src/providers/bottom_tab_provider.dart';
 import 'package:flutter_boilerplate/src/providers/theme_provier.dart';
 import 'package:flutter_boilerplate/src/widgets/themewidgets/theme_data.dart';
 import 'package:intl/date_symbol_data_local.dart';
@@ -30,6 +31,7 @@ class MyApp extends StatelessWidget {
     ]);
     return MultiProvider(
       providers: [
+        ChangeNotifierProvider(create: (_) => BottomTabBarProvider()),
         ChangeNotifierProvider(create: (_) => ThemeProvider()),
       ],
       child: Consumer<ThemeProvider>(
@@ -48,7 +50,7 @@ class MyApp extends StatelessWidget {
           darkTheme: darkThemeData(),
           navigatorKey: locator<NavigationUtils>().navigatorKey,
           onGenerateRoute: locator<NavigationUtils>().generateRoute,
-          initialRoute: routeSplash,
+          initialRoute: routeTabbar,
           localizationsDelegates: const [
             MyLocalizationsDelegate(),
             DefaultMaterialLocalizations.delegate,

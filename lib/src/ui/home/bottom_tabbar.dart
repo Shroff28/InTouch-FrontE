@@ -12,14 +12,14 @@ import 'package:flutter_boilerplate/src/ui/home/video_call_screen.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
-class Tabbar extends StatefulWidget {
-  const Tabbar({Key? key}) : super(key: key);
+class BottomTabbar extends StatefulWidget {
+  const BottomTabbar({Key? key}) : super(key: key);
 
   @override
-  State<Tabbar> createState() => _TabbarState();
+  State<BottomTabbar> createState() => _BottomTabbarState();
 }
 
-class _TabbarState extends State<Tabbar> {
+class _BottomTabbarState extends State<BottomTabbar> {
   final List<Widget> _screens = [
     const ChatListScreen(),
     const AudioCallScreen(),
@@ -91,14 +91,14 @@ class _TabbarState extends State<Tabbar> {
               ),
             ],
             selectedItemColor: primaryColor,
-            unselectedItemColor: deactiveTabColor,
+            unselectedItemColor: tabBackgroundColor,
             selectedFontSize: fontSize14,
             unselectedFontSize: fontSize14,
             selectedIconTheme: const IconThemeData(size: 24),
             unselectedIconTheme: const IconThemeData(size: 24),
             type: BottomNavigationBarType.fixed,
             backgroundColor: whiteColor,
-            elevation: 0,
+            elevation: 10,
           ),
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerDocked,

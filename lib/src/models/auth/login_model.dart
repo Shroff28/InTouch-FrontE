@@ -4,10 +4,10 @@ part 'login_model.g.dart';
 
 @JsonSerializable()
 class ReqLoginModel {
-  String? email;
+  String? username;
   String? password;
 
-  ReqLoginModel({this.email, this.password});
+  ReqLoginModel({this.username, this.password});
 
   factory ReqLoginModel.fromJson(Map<String, dynamic> json) =>
       _$ReqLoginModelFromJson(json);

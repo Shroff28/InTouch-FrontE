@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/src/base/dependencyinjection/locator.dart';
 import 'package:flutter_boilerplate/src/base/extensions/context_extension.dart';
 import 'package:flutter_boilerplate/src/base/utils/constants/color_constant.dart';
+import 'package:flutter_boilerplate/src/base/utils/constants/fontsize_constant.dart';
 import 'package:flutter_boilerplate/src/base/utils/constants/image_constant.dart';
 import 'package:flutter_boilerplate/src/base/utils/navigation_utils.dart';
+import 'package:flutter_boilerplate/src/widgets/themewidgets/theme_text.dart';
 
 extension ScaffoldExtension on Widget {
   Scaffold authContainerScaffold(
@@ -70,6 +72,30 @@ extension ScaffoldExtension on Widget {
   Scaffold homeContainerScaffold({required BuildContext context}) {
     return Scaffold(
       body: SafeArea(
+        top: true,
+        child: this,
+      ),
+    );
+  }
+
+  Scaffold appBarScaffold({
+    required BuildContext context,
+    required String title,
+  }) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: whiteColor,
+        title: ThemeText(
+          text: title,
+          lightTextColor: primaryTextColor,
+          fontSize: fontSize22,
+          fontWeight: fontWeightBold,
+        ),
+        elevation: 10,
+        centerTitle: true,
+      ),
+      body: SafeArea(
+        top: true,
         child: this,
       ),
     );

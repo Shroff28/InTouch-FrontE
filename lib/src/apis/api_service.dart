@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter_boilerplate/src/base/utils/common_methods.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import '../base/utils/constants/preference_key_constant.dart';
@@ -25,13 +26,16 @@ class ApiService {
   }
 
   static Dio addInterceptors(Dio dio) {
+    Map<String, dynamic> token = isUserLoggedIn()
+        ? {
+            'Authorization': "Bearer ${getString(prefkeyToken)}",
+          }
+        : {};
     return dio
       ..interceptors.add(
         InterceptorsWrapper(
           onRequest: (options, handler) {
-            options.headers.addAll({
-              'Authorization': "Bearer ${getString(prefkeyToken)}",
-            });
+            options.headers.addAll(token);
             if (kDebugMode) {
               log(options.headers.toString(), name: "Headers");
               log(options.baseUrl.toString() + options.path, name: "BaseURL");

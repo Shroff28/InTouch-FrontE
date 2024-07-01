@@ -186,7 +186,7 @@ class _LoginScreenState extends State<LoginScreen> {
           locator<AuthController>().loginApiCall(
             context: context,
             model: ReqLoginModel(
-              email: _emailController.text,
+              username: _emailController.text,
               password: _passwordController.text,
             ),
           );
