@@ -10,6 +10,8 @@ import 'package:flutter_boilerplate/src/base/utils/constants/image_constant.dart
 import 'package:flutter_boilerplate/src/base/utils/constants/navigation_route_constants.dart';
 import 'package:flutter_boilerplate/src/base/utils/localization/localization.dart';
 import 'package:flutter_boilerplate/src/base/utils/navigation_utils.dart';
+import 'package:flutter_boilerplate/src/controllers/auth/auth_controller.dart';
+import 'package:flutter_boilerplate/src/models/auth/register_model.dart';
 import 'package:flutter_boilerplate/src/widgets/primary_button.dart';
 import 'package:flutter_boilerplate/src/widgets/primary_text_field.dart';
 import 'package:flutter_boilerplate/src/widgets/themewidgets/theme_text.dart';
@@ -25,6 +27,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
+  final _userNameController = TextEditingController();
+  final _userNameFocus = FocusNode();
   final _emailFocus = FocusNode();
   final _passwordFocus = FocusNode();
   final _confirmPasswordFocus = FocusNode();
@@ -52,6 +56,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ),
               ),
               const SizedBox(height: 20.0),
+              _getUserNameTextField(),
+              const SizedBox(height: 8.0),
               _getEmailTextField(),
               const SizedBox(height: 8.0),
               _getPasswordTextField(),
@@ -142,7 +148,24 @@ class _SignUpScreenState extends State<SignUpScreen> {
           ),
         ),
       ),
-    ).authContainerScaffold(context: context);
+    ).authContainerScaffold(context: context, isLeadingEnabled: false);
+  }
+
+  Widget _getUserNameTextField() {
+    return PrimaryTextField(
+      hint: Localization.of().userName,
+      focusNode: _userNameFocus,
+      type: TextInputType.text,
+      textInputAction: TextInputAction.next,
+      controller: _userNameController,
+      onFieldSubmitted: (value) {
+        _userNameFocus.unfocus();
+        _emailFocus.requestFocus();
+      },
+      validateFunction: (value) {
+        return value!.isFieldEmpty("User name is empty");
+      },
+    );
   }
 
   Widget _getEmailTextField() {
@@ -203,9 +226,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
       onButtonClick: () {
         if (_formKey.currentState!.validate()) {
           FocusScope.of(context).unfocus();
-          // locator<AuthController>().loginApiCall(context: context);
+          locator<AuthController>().registerApiCall(
+            context: context,
+            model: ReqRegisterModel(
+              email: _emailController.text.trim().toLowerCase(),
+              password: _passwordController.text.trim(),
+              username: _userNameController.text.trim(),
+            ),
+          );
           // locator<NavigationUtils>().pushAndRemoveUntil(routeTabbar);
-          locator<NavigationUtils>().pushAndRemoveUntil(routeAccountSetup);
         }
       },
       textColor: whiteColor,

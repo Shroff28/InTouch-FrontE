@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/src/ui/auth/account_setup/account_setup_screen.dart';
 import 'package:flutter_boilerplate/src/ui/auth/forgot_password/forgot_password_screen.dart';
 import 'package:flutter_boilerplate/src/ui/auth/forgot_password/update_password.dart';
-import 'package:flutter_boilerplate/src/ui/auth/forgot_password/verify_code_screen.dart';
 import 'package:flutter_boilerplate/src/ui/auth/login/login_screen.dart';
 import 'package:flutter_boilerplate/src/ui/auth/signup/signup_screen.dart';
 import 'package:flutter_boilerplate/src/ui/auth/spalsh/splash_screen.dart';
-import 'package:flutter_boilerplate/src/ui/home/home_screen.dart';
+import 'package:flutter_boilerplate/src/ui/home/bottom_tabbar.dart';
 
 import 'constants/navigation_route_constants.dart';
 
@@ -54,12 +53,6 @@ class NavigationUtils {
           builder: (_) =>
               const ForgotPasswordScreen(), // To pass args use as const ForgotPasswordScreen(id: args?["id"])
         );
-      case routeVerifyCode:
-        return MaterialPageRoute(
-          settings: settings,
-          builder: (_) =>
-              const VerifyCodeScreen(), // To pass args use as const VerifyCodeScreen(id: args?["id"])
-        );
       case routeUpdatePassword:
         return MaterialPageRoute(
           settings: settings,
@@ -70,7 +63,7 @@ class NavigationUtils {
         return MaterialPageRoute(
           settings: settings,
           builder: (_) =>
-              const HomeScreen(), // To pass args use as const HomeScreen(id: args?["id"])
+              const BottomTabbar(), // To pass args use as const HomeScreen(id: args?["id"])
         );
       default:
         return _errorRoute(" Comming soon...");

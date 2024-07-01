@@ -106,4 +106,11 @@ abstract class Localization {
   String get next;
   String get back;
   String get signUpWithGoogle;
+
+  //App Strings
+  String get home;
+  String get video;
+  String get audio;
+  String get chat;
+  String get community;
 }

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30">
+  <g id="Group_15376" data-name="Group 15376" transform="translate(-85.547 -750.547)">
+    <rect id="Rectangle_22458" data-name="Rectangle 22458" width="30" height="30" transform="translate(85.547 750.547)" fill="rgba(255,255,255,0)"/>
+    <g id="Icon_ion-md-contacts" data-name="Icon ion-md-contacts" transform="translate(85.623 750.183)">
+      <path id="Path_15325" data-name="Path 15325" d="M13.974,24.183a6.919,6.919,0,0,1-6.818,0c-2.668.814-4.3,3.511-4.906,5.887H18.879C18.277,27.695,16.642,25,13.974,24.183Z" transform="translate(0 -3.844)" fill="#cbc9cf"/>
+      <path id="Path_15326" data-name="Path 15326" d="M11.128,8.44a5.989,5.989,0,1,0,5.991,5.989A5.99,5.99,0,0,0,11.128,8.44Zm0,10.551a4.629,4.629,0,0,1-4.187-2.859h8.373A4.629,4.629,0,0,1,11.128,18.991Z" transform="translate(-0.564 -0.769)" fill="#cbc9cf"/>
+      <g id="Group_15285" data-name="Group 15285" transform="translate(14.233 4.502)">
+        <path id="Path_15327" data-name="Path 15327" d="M21.863,25.681h8.905a7.4,7.4,0,0,0-4.906-5.436,6.923,6.923,0,0,1-5.8.474,7.938,7.938,0,0,1-1.583,1.975A7.682,7.682,0,0,1,21.863,25.681Z" transform="translate(-17.404 -7.577)" fill="#cbc9cf"/>
+        <path id="Path_15328" data-name="Path 15328" d="M20.692,12.2h5.686a4.618,4.618,0,0,1-4.187,2.846,4.3,4.3,0,0,1-1.436-.255,7.265,7.265,0,0,1-.369,1.421,5.993,5.993,0,1,0-3.245-8.927A7.4,7.4,0,0,1,20.692,12.2Z" transform="translate(-17.142 -4.502)" fill="#cbc9cf"/>
+      </g>
+    </g>
+  </g>
+</svg>
