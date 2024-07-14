@@ -113,4 +113,5 @@ abstract class Localization {
   String get audio;
   String get chat;
   String get community;
+  String get profile;
 }

@@ -84,16 +84,24 @@ extension ScaffoldExtension on Widget {
   }) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: whiteColor,
-        title: ThemeText(
-          text: title,
-          lightTextColor: primaryTextColor,
-          fontSize: fontSize22,
-          fontWeight: fontWeightBold,
-        ),
-        elevation: 10,
-        centerTitle: true,
-      ),
+          backgroundColor: whiteColor,
+          title: ThemeText(
+            text: title,
+            lightTextColor: primaryTextColor,
+            fontSize: fontSize22,
+            fontWeight: fontWeightBold,
+          ),
+          elevation: 10,
+          centerTitle: true,
+          actions: [
+            IconButton(
+              icon: const Padding(
+                padding: EdgeInsets.all(10.0),
+                child: Icon(Icons.filter_alt),
+              ),
+              onPressed: () {},
+            )
+          ]),
       body: SafeArea(
         top: true,
         child: this,

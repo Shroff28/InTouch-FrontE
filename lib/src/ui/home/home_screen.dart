@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_boilerplate/src/base/dependencyinjection/locator.dart';
 import 'package:flutter_boilerplate/src/base/extensions/context_extension.dart';
 import 'package:flutter_boilerplate/src/base/extensions/scaffold_extension.dart';
 import 'package:flutter_boilerplate/src/base/utils/constants/color_constant.dart';
 import 'package:flutter_boilerplate/src/base/utils/constants/fontsize_constant.dart';
 import 'package:flutter_boilerplate/src/base/utils/constants/image_constant.dart';
+import 'package:flutter_boilerplate/src/base/utils/constants/navigation_route_constants.dart';
+import 'package:flutter_boilerplate/src/base/utils/navigation_utils.dart';
 import 'package:flutter_boilerplate/src/widgets/call_list.dart';
 import 'package:flutter_boilerplate/src/widgets/themewidgets/theme_text.dart';
 
@@ -38,7 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 IconButton(
                   onPressed: () {
-                    // locator<NavigationUtils>().push(routeProfile);
+                    locator<NavigationUtils>().push(routeProfile);
                   },
                   icon: Image.asset(
                     icProfileIcon,
@@ -103,8 +106,8 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           gradient: LinearGradient(
             colors: [
-              Colors.blueGrey[300]!,
               Colors.blueGrey[400]!,
+              Colors.grey[300]!,
             ],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
@@ -115,14 +118,14 @@ class _HomeScreenState extends State<HomeScreen> {
             Positioned(
               top: 0,
               child: Container(
-                decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.only(
+                decoration: BoxDecoration(
+                  borderRadius: const BorderRadius.only(
                     topRight: Radius.circular(60.0),
                     bottomRight: Radius.circular(40.0),
                     topLeft: Radius.circular(20.0),
                     bottomLeft: Radius.circular(40.0),
                   ),
-                  color: primaryColor,
+                  color: primaryColor.withOpacity(0.7),
                 ),
                 width: 175,
                 height: 100,

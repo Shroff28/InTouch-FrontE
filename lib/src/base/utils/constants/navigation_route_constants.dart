@@ -6,3 +6,4 @@ const String routeTabbar= "routeTabbar";
 const String routeForgotPassword= "routeForgotPassword";
 const String routeUpdatePassword= "routeUpdatePassword";
 const String routeAccountSetup= "routeAccountSetup";
+const String routeProfile= "routeProfile";

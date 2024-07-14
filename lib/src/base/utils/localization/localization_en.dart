@@ -177,4 +177,7 @@ class LocalizationEN implements Localization {
 
   @override
   String get community => "Community";
+
+  @override
+  String get profile => "Profile";
 }

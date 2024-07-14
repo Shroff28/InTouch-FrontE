@@ -6,6 +6,7 @@ import 'package:flutter_boilerplate/src/ui/auth/login/login_screen.dart';
 import 'package:flutter_boilerplate/src/ui/auth/signup/signup_screen.dart';
 import 'package:flutter_boilerplate/src/ui/auth/spalsh/splash_screen.dart';
 import 'package:flutter_boilerplate/src/ui/home/bottom_tabbar.dart';
+import 'package:flutter_boilerplate/src/ui/screens/profile_screen.dart';
 
 import 'constants/navigation_route_constants.dart';
 
@@ -64,6 +65,12 @@ class NavigationUtils {
           settings: settings,
           builder: (_) =>
               const BottomTabbar(), // To pass args use as const HomeScreen(id: args?["id"])
+        );
+      case routeProfile:
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (_) =>
+              const ProfileScreen(), // To pass args use as const ProfileScreen(id: args?["id"])
         );
       default:
         return _errorRoute(" Comming soon...");

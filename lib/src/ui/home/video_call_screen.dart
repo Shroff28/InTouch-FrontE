@@ -15,7 +15,11 @@ class _VideoCallScreenState extends State<VideoCallScreen> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 18.0),
-      child: _getVerticalListing(),
+      child: Column(
+        children: [
+          _getVerticalListing(),
+        ],
+      ),
     ).appBarScaffold(context: context, title: "Video Call Logs");
   }
 
