@@ -81,10 +81,12 @@ extension ScaffoldExtension on Widget {
   Scaffold appBarScaffold({
     required BuildContext context,
     required String title,
+    required bool isFilter,
+    Widget widget = const SizedBox(),
   }) {
     return Scaffold(
       appBar: AppBar(
-          backgroundColor: whiteColor,
+          backgroundColor: Colors.white,
           title: ThemeText(
             text: title,
             lightTextColor: primaryTextColor,
@@ -94,13 +96,15 @@ extension ScaffoldExtension on Widget {
           elevation: 10,
           centerTitle: true,
           actions: [
-            IconButton(
-              icon: const Padding(
-                padding: EdgeInsets.all(10.0),
-                child: Icon(Icons.filter_alt),
-              ),
-              onPressed: () {},
-            )
+            isFilter
+                ? IconButton(
+                    icon: const Padding(
+                      padding: EdgeInsets.all(10.0),
+                      child: Icon(Icons.filter_alt),
+                    ),
+                    onPressed: () {},
+                  )
+                : widget,
           ]),
       body: SafeArea(
         top: true,

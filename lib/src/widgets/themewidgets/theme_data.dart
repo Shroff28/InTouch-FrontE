@@ -22,6 +22,10 @@ ThemeData lightThemeData() {
     datePickerTheme: const DatePickerThemeData(
       backgroundColor: Colors.white,
     ),
+    appBarTheme: const AppBarTheme(
+      backgroundColor: whiteColor,
+      centerTitle: true,
+    ),
     bottomSheetTheme: const BottomSheetThemeData(backgroundColor: Colors.white),
     dialogTheme: const DialogTheme(
       backgroundColor: Colors.white,

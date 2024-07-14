@@ -20,7 +20,11 @@ class _AudioCallScreenState extends State<AudioCallScreen> {
           _getVerticalListing(),
         ],
       ),
-    ).appBarScaffold(context: context, title: "Audio Call Logs");
+    ).appBarScaffold(
+      context: context,
+      title: "Audio Call Logs",
+      isFilter: true,
+     );
   }
 
   Widget _getVerticalListing() {

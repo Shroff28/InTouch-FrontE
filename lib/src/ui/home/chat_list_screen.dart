@@ -53,7 +53,11 @@ class _ChatListScreenState extends State<ChatListScreen> {
           _getVerticalListing(),
         ],
       ),
-    ).appBarScaffold(context: context, title: "Chat Logs");
+    ).appBarScaffold(
+      context: context,
+      title: "Chat Logs",
+      isFilter: true,
+    );
   }
 
   Widget _getVerticalListing() {

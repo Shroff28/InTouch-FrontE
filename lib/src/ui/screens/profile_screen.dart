@@ -54,7 +54,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
           _getListTile(onPressed: () {}, title: "Sign Out"),
         ],
       ),
-    ).appBarScaffold(context: context, title: Localization.of().profile);
+    ).appBarScaffold(
+      context: context,
+      title: Localization.of().profile,
+      isFilter: false,
+    );
   }
 
   Widget _getListTile({required Function() onPressed, required String title}) {

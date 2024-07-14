@@ -20,7 +20,8 @@ class _VideoCallScreenState extends State<VideoCallScreen> {
           _getVerticalListing(),
         ],
       ),
-    ).appBarScaffold(context: context, title: "Video Call Logs");
+    ).appBarScaffold(
+        context: context, title: "Video Call Logs", isFilter: true);
   }
 
   Widget _getVerticalListing() {
