@@ -5,8 +5,11 @@ import 'package:flutter_boilerplate/src/ui/auth/forgot_password/update_password.
 import 'package:flutter_boilerplate/src/ui/auth/login/login_screen.dart';
 import 'package:flutter_boilerplate/src/ui/auth/signup/signup_screen.dart';
 import 'package:flutter_boilerplate/src/ui/auth/spalsh/splash_screen.dart';
+import 'package:flutter_boilerplate/src/ui/chat/create_group_chat.dart';
+import 'package:flutter_boilerplate/src/ui/community/community_chat_liist_screen.dart';
 import 'package:flutter_boilerplate/src/ui/home/bottom_tabbar.dart';
-import 'package:flutter_boilerplate/src/ui/screens/profile_screen.dart';
+import 'package:flutter_boilerplate/src/ui/home/chat_list_screen.dart';
+import 'package:flutter_boilerplate/src/ui/profile/profile_screen.dart';
 
 import 'constants/navigation_route_constants.dart';
 
@@ -71,6 +74,24 @@ class NavigationUtils {
           settings: settings,
           builder: (_) =>
               const ProfileScreen(), // To pass args use as const ProfileScreen(id: args?["id"])
+        );
+      case routeChat:
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (_) =>
+              const ChatListScreen(), // To pass args use as const ProfileScreen(id: args?["id"])
+        );
+      case routeCommunityChatListing:
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (_) =>
+              const CommunityChatListScreen(), // To pass args use as const ProfileScreen(id: args?["id"])
+        );
+      case routeCreateGroup:
+        return MaterialPageRoute(
+          settings: settings,
+          builder: (_) =>
+              const CreateGroupChat(), // To pass args use as const ProfileScreen(id: args?["id"])
         );
       default:
         return _errorRoute(" Comming soon...");

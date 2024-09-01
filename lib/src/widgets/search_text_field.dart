@@ -32,7 +32,6 @@ class SearchTextField extends StatefulWidget {
   final Color borderColor;
   final Color hintColor;
   final Color? cursorColor;
-  final String? fontFamily;
   final Function()? onTap;
   final bool readOnly;
   final TextCapitalization textCapitalization;
@@ -67,7 +66,6 @@ class SearchTextField extends StatefulWidget {
       required this.hintColor,
       this.cursorColor = primaryColor,
       this.onTap,
-      this.fontFamily = "EBGaramond",
       required this.textCapitalization,
       this.readOnly = false})
       : super(key: key);
@@ -95,7 +93,7 @@ class SearchTextFieldState extends State<SearchTextField> {
           color: widget.enabled ? widget.textColor : primaryTextColor,
           fontSize: fontSize16,
           fontWeight: fontWeightRegular,
-          fontFamily: widget.fontFamily ?? 'EBGaramond'),
+          fontFamily: 'EBGaramond'),
       decoration: InputDecoration(
         floatingLabelBehavior: FloatingLabelBehavior.auto,
         fillColor: widget.fillColor ?? themeColor,
@@ -104,11 +102,11 @@ class SearchTextFieldState extends State<SearchTextField> {
         labelStyle: TextStyle(
             color: widget.hintColor,
             fontSize: fontSize14,
-            fontFamily: widget.fontFamily ?? 'EBGaramond'),
+            fontFamily: 'EBGaramond'),
         hintStyle: TextStyle(
             color: widget.hintColor,
-            fontSize: fontSize14,
-            fontFamily: widget.fontFamily ?? 'EBGaramond'),
+            fontSize: fontSize16,
+            fontFamily: 'EBGaramond'),
         counter: const Offstage(),
         contentPadding: const EdgeInsets.all(12.0),
         errorBorder: const OutlineInputBorder(

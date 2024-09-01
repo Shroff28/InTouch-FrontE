@@ -6,6 +6,7 @@ import 'package:flutter_boilerplate/src/base/utils/constants/fontsize_constant.d
 import 'package:flutter_boilerplate/src/base/utils/constants/image_constant.dart';
 import 'package:flutter_boilerplate/src/base/utils/navigation_utils.dart';
 import 'package:flutter_boilerplate/src/widgets/themewidgets/theme_text.dart';
+import 'package:flutter_expandable_fab/flutter_expandable_fab.dart';
 
 extension ScaffoldExtension on Widget {
   Scaffold authContainerScaffold(
@@ -82,6 +83,7 @@ extension ScaffoldExtension on Widget {
     required BuildContext context,
     required String title,
     required bool isFilter,
+    Widget? floatingButton,
     Widget widget = const SizedBox(),
   }) {
     return Scaffold(
@@ -106,6 +108,8 @@ extension ScaffoldExtension on Widget {
                   )
                 : widget,
           ]),
+      floatingActionButton: floatingButton,
+      floatingActionButtonLocation: ExpandableFab.location,
       body: SafeArea(
         top: true,
         child: this,

@@ -1,10 +1,17 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_boilerplate/src/base/dependencyinjection/locator.dart';
 import 'package:flutter_boilerplate/src/base/extensions/context_extension.dart';
 import 'package:flutter_boilerplate/src/base/extensions/scaffold_extension.dart';
 import 'package:flutter_boilerplate/src/base/utils/constants/color_constant.dart';
 import 'package:flutter_boilerplate/src/base/utils/constants/fontsize_constant.dart';
 import 'package:flutter_boilerplate/src/base/utils/constants/image_constant.dart';
+import 'package:flutter_boilerplate/src/base/utils/constants/navigation_route_constants.dart';
+import 'package:flutter_boilerplate/src/base/utils/localization/localization.dart';
+import 'package:flutter_boilerplate/src/base/utils/navigation_utils.dart';
 import 'package:flutter_boilerplate/src/widgets/themewidgets/theme_text.dart';
+import 'package:flutter_expandable_fab/flutter_expandable_fab.dart';
+import 'package:flutter_svg/svg.dart';
 
 class CommunityScreen extends StatefulWidget {
   const CommunityScreen({Key? key}) : super(key: key);
@@ -14,6 +21,7 @@ class CommunityScreen extends StatefulWidget {
 }
 
 class _CommunityScreenState extends State<CommunityScreen> {
+  final _fabButtonKey = GlobalKey<ExpandableFabState>();
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
@@ -25,9 +33,7 @@ class _CommunityScreenState extends State<CommunityScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               IconButton(
-                onPressed: () {
-                  // locator<NavigationUtils>().push(routeProfile);
-                },
+                onPressed: () {},
                 icon: Image.asset(
                   icProfileIcon,
                   height: context.getHeight(0.1) / 2,
@@ -57,10 +63,6 @@ class _CommunityScreenState extends State<CommunityScreen> {
                         )
                       ],
                       borderRadius: BorderRadius.circular(10.0),
-                      // border: Border.all(
-                      //   // color: primaryColor,
-                      //   width: 1,
-                      // ),
                     ),
                     width: context.getWidth(0.8),
                     child: const ThemeText(
@@ -79,41 +81,84 @@ class _CommunityScreenState extends State<CommunityScreen> {
       },
     ).appBarScaffold(
       context: context,
-      title: "Community",
+      title: Localization.of().community,
       isFilter: false,
-      widget: PopupMenuButton(
-          padding: const EdgeInsets.all(10.0),
-          itemBuilder: ((context) {
-            return [
-              PopupMenuItem(
-                onTap: () {},
-                child: const ThemeText(
-                  text: "Post",
-                  fontSize: fontSize13,
-                  lightTextColor: primaryColor,
-                ),
-              ),
-              PopupMenuItem(
-                onTap: () {},
-                child: const ThemeText(
-                  text: "Groups",
-                  fontSize: fontSize13,
-                  lightTextColor: primaryColor,
-                ),
-              )
-            ];
-          }),
-          child: const Icon(
-            Icons.more_vert,
-            size: 30,
-          )),
-      // IconButton(
-      //   onPressed: () {},
-      //   icon: const Icon(
-      //     Icons.more_vert,
-      //     size: 30,
-      //   ),
-      // ),
+      floatingButton: ExpandableFab(
+        distance: 70,
+        key: _fabButtonKey,
+        type: ExpandableFabType.up,
+        overlayStyle: const ExpandableFabOverlayStyle(blur: 5),
+        openButtonBuilder: DefaultFloatingActionButtonBuilder(
+          child: const Icon(Icons.menu),
+          fabSize: ExpandableFabSize.regular,
+          shape: const CircleBorder(),
+        ),
+        closeButtonBuilder: DefaultFloatingActionButtonBuilder(
+          child: const Icon(Icons.close),
+          fabSize: ExpandableFabSize.regular,
+          shape: const CircleBorder(),
+        ),
+        children: [
+          FloatingActionButton(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(50.0),
+            ),
+            onPressed: () {
+              _fabButtonKey.currentState?.toggle();
+              locator<NavigationUtils>().push(routeCreateGroup);
+            },
+            child: Image.asset(
+              icChatting,
+              height: 30,
+            ),
+          ),
+          FloatingActionButton(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(50.0),
+            ),
+            onPressed: () {
+              _fabButtonKey.currentState?.toggle();
+              // locator<NavigationUtils>()
+              //     .push(routeAddCase, arguments: {
+              //   paramIsEdit: false,
+              // });
+            },
+            child: const Icon(
+              CupertinoIcons.add,
+              size: 30,
+            ),
+          ),
+          FloatingActionButton(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(50.0),
+            ),
+            onPressed: () {
+              _fabButtonKey.currentState?.toggle();
+              // locator<NavigationUtils>()
+              //     .push(routeAddCase, arguments: {
+              //   paramIsEdit: false,
+              // });
+            },
+            child: const Icon(
+              CupertinoIcons.search,
+              size: 30,
+            ),
+          ),
+        ],
+      ),
+      widget: GestureDetector(
+        onTap: () {
+          locator<NavigationUtils>().push(routeCommunityChatListing);
+        },
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 18.0),
+          child: SvgPicture.asset(
+            icChat,
+            height: 30,
+            color: primaryColor,
+          ),
+        ),
+      ),
     );
   }
 }

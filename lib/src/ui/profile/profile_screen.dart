@@ -49,9 +49,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
           ),
           _getListTile(onPressed: () {}, title: "Security"),
-          _getListTile(onPressed: () {}, title: "Subscription Plan"),
-          _getListTile(onPressed: () {}, title: "Settings"),
-          _getListTile(onPressed: () {}, title: "Sign Out"),
+          _getListTile(onPressed: () {
+            
+          }, title: "Subscription Plan"),
+          _getListTile(
+              onPressed: () {
+                locator<NavigationUtils>().pushAndRemoveUntil(routeLogin);
+              },
+              title: "Sign Out"),
         ],
       ),
     ).appBarScaffold(

@@ -12,3 +12,4 @@ const String icChat = 'assets/images/chat.svg';
 const String icCall = 'assets/images/call.svg';
 const String icPeople = 'assets/images/people.svg';
 const String icVideo = 'assets/images/video.svg';
+const String icChatting = 'assets/images/chatting.png';
